@@ -31,9 +31,9 @@ ADMIN_SITE_HEADER = SITES[SELECTED_SITE]['SITE_NAME']
 SITE_ID = SITES[SELECTED_SITE]['SITE_ID']
 
 # SECURITY WARNING: DON'T run with DEBUG = True turned on in production
-DEBUG = True
+DEBUG = False
 ALLOWED_HOSTS = ['*']
-DB_ENV = 'dev' # 'dev' for local sqlite database, 'prod' for production database.
+DB_ENV = 'prod' # 'dev' for local sqlite database, 'prod' for production database.
 
 # CUSTOM USER MODEL
 # See /api/models.py
