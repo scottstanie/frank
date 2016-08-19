@@ -11,6 +11,9 @@ https://docs.djangoproject.com/en/1.9/howto/deployment/checklist/
 """
 
 import os, sys, mimetypes
+import string
+import random
+import dj_database_url
 from base.sites import SITES, generate_cors_whitelist
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
@@ -23,10 +26,9 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 SELECTED_SITE = 'default'
 
-APXLV_PARTNER_ID = SITES[SELECTED_SITE]['APXLV_PARTNER_ID'] # APXLV ID used for PyBeagle, 17 is only used for testing.
-SITE_ID = SITES[SELECTED_SITE]['SITE_ID']
-SECRET_KEY = SITES[SELECTED_SITE]['SECRET_KEY']
+SECRET_KEY = SECRET_KEY = os.environ.get('SECRET_KEY', "".join(random.choice(string.printable) for i in range(40)))
 ADMIN_SITE_HEADER = SITES[SELECTED_SITE]['SITE_NAME']
+SITE_ID = SITES[SELECTED_SITE]['SITE_ID']
 
 # SECURITY WARNING: DON'T run with DEBUG = True turned on in production
 DEBUG = True
@@ -176,29 +178,16 @@ WSGI_APPLICATION = 'base.wsgi.application'
 # https://docs.djangoproject.com/en/1.9/ref/settings/#databases
 
 if DB_ENV == 'prod':
-    locals().update(SITES[SELECTED_SITE]['DATABASE'])
+    DATABASES = {'default': dj_database_url.config()}
 else:
-    locals().update(SITES[SELECTED_SITE]['LOCAL_DATABASE'])
-
-# These values come from sites.py
-DATABASES = {
-    'default': {
-        'ENGINE': DB_ENGINE,
-        'NAME': DB_NAME,
-        'USER': DB_USER,
-        'PASSWORD': DB_PASSWORD,
-        'HOST': DB_HOST,
-        'PORT': DB_PORT,
-    }
-}
-
-# TEST DATABASE for TravisCI
-
-if 'test' in sys.argv:
-    DATABASES['default'] = {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'wolfhound_test_database.db')
-    }
+    DATABASES = {'default': {
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'codenames',
+        'USER': '',
+        'PASSWORD': '',  # DB Password
+        'HOST': 'localhost',
+        'PORT': 5432
+    }}
 
 # Password validation
 # https://docs.djangoproject.com/en/1.9/ref/settings/#auth-password-validators
