@@ -4,7 +4,7 @@ from django import forms
 # Admin workaround for AbstractUser
 from django.contrib.auth.admin import UserAdmin
 from django.contrib.auth.forms import UserChangeForm
-from api.models import User
+from api.models import User, Question, Showdown, Friend
 
 class CustomUserChangeForm(UserChangeForm):
     class Meta(UserChangeForm.Meta):
@@ -17,8 +17,7 @@ class MyUserAdmin(UserAdmin):
             (None, {'fields': ('custom_data',)}), # input custom fields here
     )
 
-# Import your models for the Admin Interface
-# from app.models import YourModel
 
-# Register your models here, ex.:
-# admin.site.register(NameOfModel)
+admin.site.register(Question)
+admin.site.register(Showdown)
+admin.site.register(Friend)
