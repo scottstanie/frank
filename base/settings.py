@@ -136,7 +136,10 @@ ROOT_URLCONF = 'base.urls'
 # REST API Settings, Permissions, and Pagination
 
 if DEBUG is False:
-    REST_RENDERER = ('rest_framework.renderers.JSONRenderer',)
+    REST_RENDERER = (
+        'rest_framework.renderers.JSONRenderer',
+        'rest_framework.renderers.BrowsableAPIRenderer',
+    )
 else:
     REST_RENDERER = (
         'rest_framework.renderers.JSONRenderer',
