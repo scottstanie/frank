@@ -50,4 +50,4 @@ class Showdown(models.Model):
     created_at = models.DateTimeField(auto_now_add=True, db_index=True, null=True)
 
     def __unicode__(self):
-        return "%s: winner: %s, loser: %s" % (self.question, self.winner, self.lost)
+        return "%s: winner: %s, loser: %s" % (self.question, self.winner, self.loser)
