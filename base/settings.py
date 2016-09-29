@@ -151,7 +151,7 @@ REST_FRAMEWORK = {
     ),
     'DEFAULT_RENDERER_CLASSES':
         REST_RENDERER,
-    'DEFAULT_PERMISSION_CLASSES': ('rest_framework.permissions.IsAuthenticatedOrReadOnly',),
+    'DEFAULT_PERMISSION_CLASSES': ('rest_framework.permissions.AllowAny',),
     'DEFAULT_PAGINATION_CLASS': 'api.pagination.DefaultPagination'
 }
 
