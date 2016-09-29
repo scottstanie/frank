@@ -76,10 +76,10 @@ class QuestionSerializer(DynamicFieldsMixin, serializers.ModelSerializer):
 
 
 class ShowdownSerializer(DynamicFieldsMixin, serializers.ModelSerializer):
-    question = QuestionSerializer()
-    rater = serializers.PrimaryKeyRelatedField(read_only=True)
-    winner = serializers.StringRelatedField(read_only=True)  # Prints names as str
-    loser = serializers.StringRelatedField(read_only=True)  # Prints names as str
+    question = serializers.PrimaryKeyRelatedField(queryset=Question.objects.all())
+    rater = serializers.PrimaryKeyRelatedField(queryset=User.objects.all())
+    winner = serializers.PrimaryKeyRelatedField(queryset=Friend.objects.all())  # Prints names as str
+    loser = serializers.PrimaryKeyRelatedField(queryset=Friend.objects.all())  # Prints names as str
 
     class Meta:
         model = Showdown

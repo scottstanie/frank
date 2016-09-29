@@ -184,7 +184,7 @@ if DB_ENV == 'prod':
 else:
     DATABASES = {'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'codenames',
+        'NAME': 'frank',
         'USER': '',
         'PASSWORD': '',  # DB Password
         'HOST': 'localhost',
