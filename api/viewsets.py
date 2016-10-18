@@ -80,6 +80,6 @@ class FriendViewSet(viewsets.ModelViewSet):
         fb_source_user_id = self.request.query_params.get('fb_source_user_id', None)
 
         if fb_source_user_id is not None:
-            return self.queryset.filter(fb_source_user_id__icontains=fb_source_user_id)
+            return self.queryset.filter(fb_source_user_id=fb_source_user_id)
         else:
             return self.queryset
