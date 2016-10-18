@@ -91,4 +91,4 @@ class FriendSerializer(DynamicFieldsMixin, serializers.ModelSerializer):
 
     class Meta:
         model = Friend
-        fields = ('id', 'source_user', 'first_name', 'last_name', 'invite_friend_id', 'facebook_id', 'image_url')
+        fields = ('id', 'source_user', 'full_name', 'fb_source_user_id', 'invite_friend_id', 'facebook_id', 'image_url')
