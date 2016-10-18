@@ -35,8 +35,8 @@ class Friend(models.Model):
     A facebook friend of a signed up user (or through some other method of connection)
     """
     source_user = models.ForeignKey(User, related_name='friends')  # related_name = showdown_set
-    first_name = models.TextField(null=True, blank=True)
-    last_name = models.TextField(null=True, blank=True)
+    full_name = models.TextField(null=True, blank=True)
+    fb_source_user_id = models.TextField(null=True, blank=True)
     facebook_id = models.IntegerField(null=True, blank=True)
     invite_friend_id = models.CharField(max_length=255, null=True, blank=True)
     image_url = models.URLField(null=True, blank=True)

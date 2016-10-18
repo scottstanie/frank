@@ -77,9 +77,9 @@ class FriendViewSet(viewsets.ModelViewSet):
     serializer_class = FriendSerializer
 
     def get_queryset(self):
-        first_name = self.request.query_params.get('first_name', None)
+        fb_source_user_id = self.request.query_params.get('fb_source_user_id', None)
 
-        if first_name is not None:
-            return self.queryset.filter(first_name__icontains=first_name)
+        if fb_source_user_id is not None:
+            return self.queryset.filter(fb_source_user_id=fb_source_user_id)
         else:
             return self.queryset
